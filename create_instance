@@ -1,0 +1,14 @@
+provider "aws" {
+  region = "us-east-1"
+
+}
+
+resource "aws_instance" "web_server" {
+    count = 3
+    ami = "ami-05789a57558e06055"
+    instance_type = "t2.micro"
+    key_name = "terraform_key"
+    tags = {
+      "Name" = "web_server${count.index}"
+    }
+}
